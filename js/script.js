@@ -49,11 +49,6 @@ select.addEventListener('change', () =>{
 
 
 
-
-
-
-
-
 /********************************
  * FUNCTIONS
  *********************************/
@@ -155,6 +150,12 @@ function genOptions(types,select){
 
 // Funzione per filtrare icons in base al tipo 
 
+/**
+ * 
+ * @param {*} coloredIcons //Arrey completi
+ * @param {*} selected // Tipo di selezione
+ * @returns // Array filtrato in base al tipo di selezione
+ */
 function filterIcons(coloredIcons,selected){
 
     if(selected === 'all'){
