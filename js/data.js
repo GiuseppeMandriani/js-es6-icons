@@ -1,3 +1,5 @@
+// Icon Set (Sorgente dati)
+
 const icons = [
     {
         name: 'cat',
