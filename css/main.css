@@ -67,6 +67,7 @@ body{
     color:#004643;
     border: 1px solid #004643;
     background: transparent;
+    text-transform: capitalize;
 }
 
 /* Freccia Menù a tendina */

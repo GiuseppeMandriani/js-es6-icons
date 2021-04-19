@@ -7,6 +7,8 @@ console.log('Icons Display')
 
 const container = document.querySelector('.icons'); //Icon Container
 
+const select = document.querySelector('#type'); // Selettore select
+
 
 
 
@@ -29,24 +31,21 @@ printIcons(coloredIcons,container);
 
 // Fase 3 Filtrare Icones
 
+// a) Generare select options
 
+const types = getIcon(coloredIcons);
 
+genOptions(types,select);
 
+// b) Filtro allo switch
 
+select.addEventListener('change', () =>{
+    console.log(select.value);
+    const selected = select.value;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    const filteredIcons = filterIcons(coloredIcons,selected);
+    printIcons(filteredIcons,container);
+});
 
 
 
@@ -59,8 +58,8 @@ printIcons(coloredIcons,container);
  * FUNCTIONS
  *********************************/
 
-// Funzione per stampare a schermo
 
+// Funzione per stampare a schermo
 /**
  * 
  * @param {*} icons //Array di oggetti
@@ -83,17 +82,17 @@ function printIcons(icons,container){
     
     //Aggiunta icone al container
     container.innerHTML = display;
-    console.log(display);
+    // console.log(display);
 
 };
 
 
 // Funzione per ritornare icone colorate in base al tipo
-
 /**
  * 
  * @param {*} icons //Array di oggetti
- * @param {*} colors // Array di colori
+ * @param {*} colors // Array dei colori
+ * @returns // Nuovo Array con aggiunta dei colori
  */
 function colorIcons(icons,colors){
     const types = getIcon(icons)
@@ -119,8 +118,11 @@ function colorIcons(icons,colors){
 
 
 // Funzione per ricavare il tipo senza duplicati
-
-
+/**
+ * 
+ * @param {*} icons //Array di oggetti
+ * @returns // Array con il tipo 
+ */
 function getIcon(icons){
 
     const types =[]; // Array per inserimento del tipo che incontreremo nel loop
@@ -135,3 +137,37 @@ function getIcon(icons){
     return types;
 
 }
+
+// Funzione per generare options
+
+function genOptions(types,select){
+
+    // genero options
+    let options = '';
+    types.forEach((type) =>{
+        options +=`<option value="${type}">${type}</option>`;
+    
+    });
+
+    // Aggiungo e non sovrascrivo quello esistente
+    select.innerHTML += options;
+};
+
+// Funzione per filtrare icons in base al tipo 
+
+function filterIcons(coloredIcons,selected){
+
+    if(selected === 'all'){
+        return coloredIcons;
+    };
+
+    const filtered = coloredIcons.filter((icon) =>{
+
+        return icon.type === selected;
+    });
+
+    return filtered;
+};
+
+
+
