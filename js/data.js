@@ -98,3 +98,12 @@ const icons = [
         family: 'fas',
     },
 ];
+
+
+// Color for icons
+
+const colors = [
+    '#b8c1ec',
+    '#9656a1',
+    '#e16162',
+]
